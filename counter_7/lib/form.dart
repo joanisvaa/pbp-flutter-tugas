@@ -2,6 +2,7 @@ import 'package:counter_7/main.dart';
 import 'package:flutter/material.dart';
 import 'package:counter_7/dataBudget.dart';
 import 'package:counter_7/Data.dart';
+import 'package:counter_7/page/watchlist.dart';
 
 import 'dart:io';
 
@@ -57,6 +58,17 @@ class _MyFormPageState extends State<MyFormPage> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => const DataBudgetPage()),
+                );
+              },
+            ),
+                                    ListTile(
+              title: const Text('My Watch List'),
+              onTap: () {
+                // Route menu ke halaman form
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const WatchListPage()),
                 );
               },
             ),

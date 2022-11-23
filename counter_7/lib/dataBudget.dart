@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:counter_7/form.dart';
 import 'package:counter_7/main.dart';
 import 'package:counter_7/data.dart';
+import 'package:counter_7/page/watchlist.dart';
 
 class DataBudgetPage extends StatefulWidget {
   const DataBudgetPage({super.key});
@@ -54,6 +55,17 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
                   );
                 },
               ),
+              ListTile(
+                title: const Text('My Watch List'),
+                onTap: () {
+                  // Route menu ke halaman form
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const WatchListPage()),
+                  );
+                },
+              ),
             ],
           ),
         ),
@@ -86,10 +98,7 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
                                     style: const TextStyle(fontSize: 12),
                                   )
                                 ])
-                          ]
-                          )
-                          )
-                          );
+                          ])));
             }));
   }
 }
