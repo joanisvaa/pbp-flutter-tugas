@@ -18,9 +18,6 @@ class _MyFormPageState extends State<MyFormPage> {
   double _nominal = 0;
   String _budget = 'PEMASUKAN';
   List<String> _jenisBudget = ['PEMASUKAN', 'PENGELUARAN'];
-  List<String> _juduls = [];
-  List<double> _nominals = [];
-  List<String> _budgets = [];
 
   @override
   Widget build(BuildContext context) {
@@ -147,55 +144,42 @@ class _MyFormPageState extends State<MyFormPage> {
                     },
                   ),
                 ),
-                Container(
-                  margin: const EdgeInsets.all(8),
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(5),
+                DropdownButtonFormField(
+                  value: _budget,
+                  icon: const Icon(Icons.keyboard_arrow_down),
+                  items: _jenisBudget.map((String items) {
+                    return DropdownMenuItem(
+                      value: items,
+                      child: Text(items),
+                    );
+                  }).toList(),
+                  onChanged: (String? newValue) {
+                    setState(() {
+                      _budget = newValue!;
+                    });
+                  },
+                ),
+                TextButton(
+                  child: const Text(
+                    "Simpan",
+                    style: TextStyle(color: Colors.white),
                   ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      ListTile(
-                        leading: const Icon(Icons.class_),
-                        title: const Text(
-                          'Pilih Jenis',
-                        ),
-                        trailing: DropdownButton(
-                          value: _budget,
-                          icon: const Icon(Icons.keyboard_arrow_down),
-                          items: _jenisBudget.map((String items) {
-                            return DropdownMenuItem(
-                              value: items,
-                              child: Text(items),
-                            );
-                          }).toList(),
-                          onChanged: (String? newValue) {
-                            setState(() {
-                              _budget = newValue!;
-                            });
-                          },
-                        ),
-                      ),
-                      TextButton(
-                        child: const Text(
-                          "Simpan",
-                          style: TextStyle(color: Colors.white),
-                        ),
-                        style: ButtonStyle(
-                          backgroundColor:
-                              MaterialStateProperty.all(Colors.blue),
-                        ),
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            Data.addJudul(judul: _judul);
-                            Data.addNominal(nominal: _nominal);
-                            Data.addBudget(budget: _budget);
-                          }
-                        },
-                      ),
-                    ],
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(Colors.blue),
                   ),
+                  onPressed: () {
+                    if (_formKey.currentState!.validate()) {
+                      Data.addJudul(judul: _judul);
+                      Data.addNominal(nominal: _nominal);
+                      Data.addBudget(budget: _budget);
+
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const MyFormPage()),
+                      );
+                    }
+                  },
                 ),
               ],
             ),

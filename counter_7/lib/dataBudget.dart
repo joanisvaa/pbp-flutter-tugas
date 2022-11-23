@@ -86,7 +86,10 @@ class _DataBudgetPageState extends State<DataBudgetPage> {
                                     style: const TextStyle(fontSize: 12),
                                   )
                                 ])
-                          ])));
+                          ]
+                          )
+                          )
+                          );
             }));
   }
 }

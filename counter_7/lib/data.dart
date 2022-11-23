@@ -3,10 +3,6 @@ class Data {
   static List<double> nominals = [];
   static List<String> budgets = [];
 
-  String judul = '';
-  double nominal = 0;
-  String budget = '';
-
   static void addJudul({required judul}) {
     juduls.add(judul);
   }
